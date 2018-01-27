@@ -1,6 +1,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/MikhaelGerbet/dashingJS2/badge.svg?branch=master)](https://coveralls.io/github/MikhaelGerbet/dashingJS2?branch=master)
 [![Build Status](https://travis-ci.org/MikhaelGerbet/dashingJS2.svg?branch=master)](https://travis-ci.org/MikhaelGerbet/dashingJS2)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/fb5f5e9cd38d4bd9b73e8d3a4db66ad0)](https://www.codacy.com/app/frollon.noir/dashingJS2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=MikhaelGerbet/dashingJS2&amp;utm_campaign=Badge_Grade)
+[![Known Vulnerabilities](https://snyk.io/test/github/mikhaelgerbet/dashingjs2/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mikhaelgerbet/dashingjs2?targetFile=package.json)
 
 # DashingJS2
 
