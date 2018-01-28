@@ -12,7 +12,8 @@
     "precommit": "npm run commitlint && npm run lint",
     "commitlint": "commitlint -e",
     "test:cover": "rm -rf ./coverage && ng test --no-watch --code-coverage",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "build:gh-pages:demo1": "ng build -e=demo1 -op=gh-pages/demo1/ -bh=/dashingJS2/demo1/"
   },
   "private": true,
   "dependencies": {
