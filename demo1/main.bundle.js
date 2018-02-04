@@ -32,7 +32,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "h1 {\n  color: blue; }\n", ""]);
+exports.push([module.i, "h1 {\n  color: white;\n  border-top-style: dashed;\n  border-bottom-style: solid; }\n\nh2 {\n  display: inline-block;\n  max-width: 100%;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  word-wrap: normal; }\n", ""]);
 
 // exports
 
