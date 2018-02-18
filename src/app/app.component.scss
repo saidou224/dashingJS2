@@ -5,11 +5,3 @@ h1  {
   @include border-style(dashed null solid);
 }
 
-h2 {
-  @include ellipsis;
-  color: $warning;
-
-  a {
-    color: $danger;
-  }
-}
