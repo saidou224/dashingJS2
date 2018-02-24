@@ -83,6 +83,48 @@ function toComment(sourceMap) {
 
 /***/ }),
 
+/***/ "../../../../font-awesome/fonts/fontawesome-webfont.eot":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fontawesome-webfont.674f50d287a8c48dc19b.eot";
+
+/***/ }),
+
+/***/ "../../../../font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fontawesome-webfont.674f50d287a8c48dc19b.eot";
+
+/***/ }),
+
+/***/ "../../../../font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fontawesome-webfont.912ec66d7572ff821749.svg";
+
+/***/ }),
+
+/***/ "../../../../font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fontawesome-webfont.b06871f281fee6b241d6.ttf";
+
+/***/ }),
+
+/***/ "../../../../font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fontawesome-webfont.af7ae505a9eed503f8b8.woff2";
+
+/***/ }),
+
+/***/ "../../../../font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "fontawesome-webfont.fee66e712a8a08eef580.woff";
+
+/***/ }),
+
 /***/ "../../../../rxjs/_esm5/InnerSubscriber.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
