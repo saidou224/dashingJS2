@@ -2,10 +2,12 @@
 @import "variables";
 @import "~bourbon/core/bourbon";
 @import "bootstrap-custom";
+@import "fonts/fonts";
+@import "font-awesome-custom";
 
 body, html {
   background-color: $bg-color;
-  font-family: $font-stack-verdana;
+  font-family: 'Poppins';
   color: $text-default-color;
 }
 
