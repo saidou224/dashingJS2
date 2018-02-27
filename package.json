@@ -9,11 +9,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "precommit": "npm run commitlint && npm run lint",
+    "cc": "npm run prettier && npm run lint",
+    "prettier": "prettier --write src/**/*{ts,scss,md}",
+    "precommit": "npm run pretty-quick --staged && npm run lint && npm run commitlint",
     "commitlint": "commitlint -e",
     "test:cover": "rm -rf ./coverage && ng test --no-watch --code-coverage",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "build:gh-pages:demo1": "ng build -e=demo1 -op=gh-pages/demo1/ -bh=/dashingJS2/demo1/"
+    "build:gh-pages:demo1": "ng build -e=demo1 -op=gh-pages/demo1/ -bh=/dashingJS2/demo1/",
+    "pretty-quick": "pretty-quick"
   },
   "private": true,
   "dependencies": {
@@ -54,20 +57,16 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "prettier": "1.10.2",
+    "pretty-quick": "^1.4.1",
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
   },
   "browserslist": {
-    "demo1": [
-      "defaults"
-    ],
-    "prod": [
-      "last 2 Chrome version"
-    ],
-    "dev": [
-      "last 2 Chrome version"
-    ]
+    "demo1": ["defaults"],
+    "prod": ["last 2 Chrome version"],
+    "dev": ["last 2 Chrome version"]
   }
 }

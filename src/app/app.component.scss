@@ -1,7 +1,6 @@
-@import "../sass/tools";
+@import '../sass/tools';
 
-h1  {
+h1 {
   color: $info;
   @include border-style(dashed null solid);
 }
-

@@ -4,15 +4,15 @@ Creation date: 24/02/2018 18:45
 */
 
 @font-face {
-  font-family: "Flaticon";
-  src: url("../assets/fonts/flaticon/Flaticon.woff") format("woff");
+  font-family: 'Flaticon';
+  src: url('../assets/fonts/flaticon/Flaticon.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
-.fi:before{
+.fi:before {
   display: inline-block;
-  font-family: "Flaticon";
+  font-family: 'Flaticon';
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,5 +25,9 @@ Creation date: 24/02/2018 18:45
   font-smoothing: antialiased;
 }
 
-.flaticon-youtube:before { content: "\f100"; }
-.flaticon-github:before { content: "\f101"; }
+.flaticon-youtube:before {
+  content: '\f100';
+}
+.flaticon-github:before {
+  content: '\f101';
+}
