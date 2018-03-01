@@ -1,6 +1,6 @@
 <gridster [options]="options">
-    <gridster-item [item]="item" *ngFor="let item of dashboard; index as i">
-        <div class="item-content">
+    <gridster-item [item]="item" *ngFor="let item of items; index as i">
+        <div class="item-content" [ngClass]="item.class">
             <h4>item {{i +1}} <small>c:{{item.cols}} r:{{item.rows}}</small></h4>
         </div>
     </gridster-item>

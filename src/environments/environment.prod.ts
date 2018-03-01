@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  dashingJS2ConfigFile: '.dashingjs2rc.json'
 };

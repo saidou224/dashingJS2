@@ -9,7 +9,10 @@ describe('DashboardGridsterConfigService', () => {
     });
   });
 
-  it('should be created', inject([DashboardGridsterConfigService], (service: DashboardGridsterConfigService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should be created',
+    inject([DashboardGridsterConfigService], (service: DashboardGridsterConfigService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });
