@@ -1,7 +1,10 @@
 <gridster [options]="options">
     <gridster-item [item]="item" *ngFor="let item of items; index as i">
-        <div class="item-content" [ngClass]="item.class">
-            <h4>item {{i +1}} <small>c:{{item.cols}} r:{{item.rows}}</small></h4>
-        </div>
+        <ng-container *ngFor="let widget of item.widgets;">
+            <div class="item-content" [ngClass]="widget.class" >
+                <i class="bg-icon" *ngIf="widget.icon" [ngClass]="widget.icon"></i>
+                <app-widget *ngIf="widget.component"  [data]="{params:widget,item:item}"></app-widget>
+            </div>
+        </ng-container>
     </gridster-item>
 </gridster>

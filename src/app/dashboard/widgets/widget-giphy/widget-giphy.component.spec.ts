@@ -1,0 +1,26 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { WidgetGiphyComponent } from './widget-giphy.component';
+
+describe('WidgetGiphyComponent', () => {
+  let component: WidgetGiphyComponent;
+  let fixture: ComponentFixture<WidgetGiphyComponent>;
+
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [WidgetGiphyComponent]
+      }).compileComponents();
+    })
+  );
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WidgetGiphyComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

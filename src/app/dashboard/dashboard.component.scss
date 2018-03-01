@@ -5,14 +5,21 @@
     background-color: transparent;
 
     gridster-item {
-      background-color: $gray-700;
-
       .item-content {
         display: flex;
         align-items: center;
         width: 100%;
         height: 100%;
         justify-content: center;
+
+        > i.bg-icon {
+          opacity: 0.2;
+          position: absolute;
+          z-index: 0;
+          vertical-align: middle;
+          text-align: center;
+          font-size: 10vw;
+        }
       }
     }
   }
