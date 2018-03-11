@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardComponent } from './dashboard.component';
+import {GridsterModule} from 'angular-gridster2';
+import {DashboardGridsterConfigService} from './dashboard-gridster-config.service';
+import {DashboardRoutesModule} from './dashboard.routes';
+import {CommonModule} from '@angular/common';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -9,7 +13,9 @@ describe('DashboardComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [DashboardComponent]
+        imports: [CommonModule, DashboardRoutesModule, GridsterModule],
+        declarations: [DashboardComponent],
+        providers: [DashboardGridsterConfigService]
       }).compileComponents();
     })
   );
