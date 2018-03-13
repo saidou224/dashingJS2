@@ -273,7 +273,7 @@ var DashboardGridsterConfigService = (function () {
 /***/ "../../../../../src/app/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<gridster [options]=\"config\">\n    <gridster-item *ngFor=\"let item of items; index as i\"\n    [item]=\"item\" >\n        <div class=\"item-container\">\n            <div class=\"item-mock\">\n                <h4>item {{i + 1}}</h4>\n                c:{{item.cols}} r:{{item.rows}}\n            </div>\n        </div>\n    </gridster-item>\n</gridster>\n"
+module.exports = "<gridster [options]=\"config\">\n    <gridster-item *ngFor=\"let item of items; index as i\"\n    [item]=\"item\" >\n        <div class=\"item-container\" [ngClass]=\"item.widget.class\">\n            <i class=\"bg-icon\" [ngClass]=\"item.widget.icon\"></i>\n            <div class=\"item-mock\">\n                <h4>item {{i + 1}}</h4>\n                c:{{item.cols}} r:{{item.rows}}\n            </div>\n        </div>\n    </gridster-item>\n</gridster>\n"
 
 /***/ }),
 
@@ -285,7 +285,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*!\n * Bootstrap v4.0.0 (https://getbootstrap.com)\n * Copyright 2011-2018 The Bootstrap Authors\n * Copyright 2011-2018 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n */\n/* FONT PATH\n * -------------------------- */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0\");\n  src: url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0\") format(\"embedded-opentype\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0\") format(\"woff2\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0\") format(\"woff\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0\") format(\"truetype\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular\") format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n:host gridster {\n  background-color: transparent; }\n  :host gridster > gridster-item {\n    background-color: #495057; }\n    :host gridster > gridster-item > .item-container {\n      width: 100%;\n      height: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center; }\n", ""]);
+exports.push([module.i, "/*!\n * Bootstrap v4.0.0 (https://getbootstrap.com)\n * Copyright 2011-2018 The Bootstrap Authors\n * Copyright 2011-2018 Twitter, Inc.\n * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)\n */\n/* FONT PATH\n * -------------------------- */\n@font-face {\n  font-family: 'FontAwesome';\n  src: url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0\");\n  src: url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0\") format(\"embedded-opentype\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0\") format(\"woff2\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.woff?v=4.7.0\") format(\"woff\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.ttf?v=4.7.0\") format(\"truetype\"), url(\"/dashingJS2/demo1/node_modules/font-awesome/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular\") format(\"svg\");\n  font-weight: normal;\n  font-style: normal; }\n\n:host gridster {\n  background-color: transparent; }\n  :host gridster > gridster-item {\n    background-color: #495057; }\n    :host gridster > gridster-item > .item-container {\n      width: 100%;\n      height: 100%;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center; }\n      :host gridster > gridster-item > .item-container > i.bg-icon {\n        opacity: 0.2;\n        position: absolute;\n        z-index: 0;\n        vertical-align: center;\n        text-align: center;\n        font-size: 10vw; }\n", ""]);
 
 // exports
 
@@ -302,6 +302,7 @@ module.exports = module.exports.toString();
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dashboard_gridster_config_service__ = __webpack_require__("../../../../../src/app/dashboard/dashboard-gridster-config.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -313,27 +314,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var DashboardComponent = (function () {
     function DashboardComponent(dashboardGridsterConfigService) {
         this.dashboardGridsterConfigService = dashboardGridsterConfigService;
     }
     DashboardComponent.prototype.ngOnInit = function () {
         this.config = this.dashboardGridsterConfigService.getConfig();
-        this.items = [
-            { cols: 1, rows: 2 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 2, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 },
-            { cols: 1, rows: 1 }
-        ];
+        this.items = __WEBPACK_IMPORTED_MODULE_2__environments_environment__["a" /* environment */].dashingjs2Config.items;
     };
     DashboardComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -490,8 +478,26 @@ var PageNotFoundComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+var dashingjs2Config = {
+    items: [
+        { cols: 1, rows: 2, widget: { icon: 'fa fa-magic', class: 'bg-primary' } },
+        { cols: 1, rows: 1, widget: { icon: 'fa fa-google', class: 'bg-secondary' } },
+        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-success' } },
+        { cols: 1, rows: 1, widget: { icon: 'fi flaticon-youtube', class: 'bg-danger' } },
+        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-warning' } },
+        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-info' } },
+        { cols: 2, rows: 1, widget: { icon: null, class: 'bg-light text-dark' } },
+        { cols: 1, rows: 1, widget: { icon: 'fa fa-bitcoin', class: 'bg-dark' } },
+        { cols: 1, rows: 1, widget: { icon: 'fa fa-download', class: 'bg-white text-dark' } },
+        { cols: 1, rows: 1, widget: { icon: 'fi flaticon-github', class: 'bg-primary' } },
+        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-secondary' } },
+        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-success' } },
+        { cols: 1, rows: 1, widget: { icon: 'fa fa-warning', class: 'bg-danger' } }
+    ]
+};
 var environment = {
-    production: true
+    production: true,
+    dashingjs2Config: dashingjs2Config
 };
 
 
