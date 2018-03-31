@@ -273,7 +273,7 @@ var DashboardGridsterConfigService = (function () {
 /***/ "../../../../../src/app/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<gridster [options]=\"config\">\n    <gridster-item *ngFor=\"let item of items; index as i\"\n    [item]=\"item\" >\n        <div class=\"item-container\" [ngClass]=\"item.widget.class\">\n            <i class=\"bg-icon\" [ngClass]=\"item.widget.icon\"></i>\n            <div class=\"item-mock\">\n                <h4>item {{i + 1}}</h4>\n                c:{{item.cols}} r:{{item.rows}}\n            </div>\n        </div>\n    </gridster-item>\n</gridster>\n"
+module.exports = "<gridster [options]=\"config\">\n    <gridster-item *ngFor=\"let item of items; index as i\"\n    [item]=\"item\" >\n        <div class=\"item-container\" [ngClass]=\"item.widget.class\">\n            <i class=\"bg-icon\" [ngClass]=\"item.widget.icon\"></i>\n            <app-widget-container [data]=\"item\"></app-widget-container>\n        </div>\n    </gridster-item>\n</gridster>\n"
 
 /***/ }),
 
@@ -350,6 +350,9 @@ var DashboardComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular_gridster2__ = __webpack_require__("../../../../angular-gridster2/dist/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular_gridster2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular_gridster2__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_gridster_config_service__ = __webpack_require__("../../../../../src/app/dashboard/dashboard-gridster-config.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__widget_container_component__ = __webpack_require__("../../../../../src/app/dashboard/widget-container.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__widget_host_directive__ = __webpack_require__("../../../../../src/app/dashboard/widget-host.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__ = __webpack_require__("../../../../../src/app/dashboard/widgets/hello-world/hello-world.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -362,14 +365,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
 var DashboardModule = (function () {
     function DashboardModule() {
     }
     DashboardModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_3__dashboard_routes__["a" /* DashboardRoutesModule */], __WEBPACK_IMPORTED_MODULE_4_angular_gridster2__["GridsterModule"]],
-            declarations: [__WEBPACK_IMPORTED_MODULE_2__dashboard_component__["a" /* DashboardComponent */]],
-            providers: [__WEBPACK_IMPORTED_MODULE_5__dashboard_gridster_config_service__["a" /* DashboardGridsterConfigService */]]
+            declarations: [__WEBPACK_IMPORTED_MODULE_2__dashboard_component__["a" /* DashboardComponent */], __WEBPACK_IMPORTED_MODULE_6__widget_container_component__["a" /* WidgetContainerComponent */], __WEBPACK_IMPORTED_MODULE_7__widget_host_directive__["a" /* WidgetHostDirective */], __WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */]],
+            providers: [__WEBPACK_IMPORTED_MODULE_5__dashboard_gridster_config_service__["a" /* DashboardGridsterConfigService */]],
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */]]
         })
     ], DashboardModule);
     return DashboardModule;
@@ -407,6 +414,144 @@ var DashboardRoutesModule = (function () {
         })
     ], DashboardRoutesModule);
     return DashboardRoutesModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/widget-container.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetContainerComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__widget_host_directive__ = __webpack_require__("../../../../../src/app/dashboard/widget-host.directive.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var WidgetContainerComponent = (function () {
+    function WidgetContainerComponent(componentFactoryResolver) {
+        this.componentFactoryResolver = componentFactoryResolver;
+    }
+    WidgetContainerComponent.prototype.injectComponent = function () {
+        if (this.data.widget.component === null) {
+            return;
+        }
+        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.data.widget.component);
+        var componentRef = this.widgetHostDirective.viewContainerRef.createComponent(componentFactory);
+        componentRef.instance.data = this.data;
+    };
+    WidgetContainerComponent.prototype.ngOnInit = function () {
+        this.injectComponent();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], WidgetContainerComponent.prototype, "data", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1__widget_host_directive__["a" /* WidgetHostDirective */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1__widget_host_directive__["a" /* WidgetHostDirective */])
+    ], WidgetContainerComponent.prototype, "widgetHostDirective", void 0);
+    WidgetContainerComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-widget-container',
+            template: "<ng-template [appWidgetHost]=\"data\"></ng-template>"
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ComponentFactoryResolver"]])
+    ], WidgetContainerComponent);
+    return WidgetContainerComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/widget-host.directive.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetHostDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var WidgetHostDirective = (function () {
+    function WidgetHostDirective(viewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
+    }
+    Object.defineProperty(WidgetHostDirective.prototype, "appWidgetHost", {
+        set: function (data) {
+            this.data = data;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])('appWidgetHost'),
+        __metadata("design:type", Object),
+        __metadata("design:paramtypes", [Object])
+    ], WidgetHostDirective.prototype, "appWidgetHost", null);
+    WidgetHostDirective = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"])({
+            selector: '[appWidgetHost]'
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewContainerRef"]])
+    ], WidgetHostDirective);
+    return WidgetHostDirective;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/widgets/hello-world/hello-world.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HelloWorldComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var HelloWorldComponent = (function () {
+    function HelloWorldComponent() {
+    }
+    HelloWorldComponent.prototype.ngOnInit = function () { };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], HelloWorldComponent.prototype, "data", void 0);
+    HelloWorldComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-hello-world',
+            template: "\n      <h4>Hello world!</h4>\n      c: {{data.cols}} r: {{data.rows}}\n  "
+        }),
+        __metadata("design:paramtypes", [])
+    ], HelloWorldComponent);
+    return HelloWorldComponent;
 }());
 
 
@@ -478,21 +623,23 @@ var PageNotFoundComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_dashboard_widgets_hello_world_hello_world_component__ = __webpack_require__("../../../../../src/app/dashboard/widgets/hello-world/hello-world.component.ts");
+
 var dashingjs2Config = {
     items: [
-        { cols: 1, rows: 2, widget: { icon: 'fa fa-magic', class: 'bg-primary' } },
-        { cols: 1, rows: 1, widget: { icon: 'fa fa-google', class: 'bg-secondary' } },
-        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-success' } },
-        { cols: 1, rows: 1, widget: { icon: 'fi flaticon-youtube', class: 'bg-danger' } },
-        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-warning' } },
-        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-info' } },
-        { cols: 2, rows: 1, widget: { icon: null, class: 'bg-light text-dark' } },
-        { cols: 1, rows: 1, widget: { icon: 'fa fa-bitcoin', class: 'bg-dark' } },
-        { cols: 1, rows: 1, widget: { icon: 'fa fa-download', class: 'bg-white text-dark' } },
-        { cols: 1, rows: 1, widget: { icon: 'fi flaticon-github', class: 'bg-primary' } },
-        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-secondary' } },
-        { cols: 1, rows: 1, widget: { icon: null, class: 'bg-success' } },
-        { cols: 1, rows: 1, widget: { icon: 'fa fa-warning', class: 'bg-danger' } }
+        { cols: 1, rows: 2, widget: { component: null, icon: 'fa fa-magic', class: 'bg-primary' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: 'fa fa-google', class: 'bg-secondary' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: null, class: 'bg-success' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: 'fi flaticon-youtube', class: 'bg-danger' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: null, class: 'bg-warning' } },
+        { cols: 1, rows: 1, widget: { component: __WEBPACK_IMPORTED_MODULE_0__app_dashboard_widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */], icon: null, class: 'bg-info' } },
+        { cols: 2, rows: 1, widget: { component: null, icon: null, class: 'bg-light text-dark' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: 'fa fa-bitcoin', class: 'bg-dark' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: 'fa fa-download', class: 'bg-white text-dark' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: 'fi flaticon-github', class: 'bg-primary' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: null, class: 'bg-secondary' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: null, class: 'bg-success' } },
+        { cols: 1, rows: 1, widget: { component: null, icon: 'fa fa-warning', class: 'bg-danger' } }
     ]
 };
 var environment = {
