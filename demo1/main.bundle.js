@@ -628,7 +628,7 @@ var GiphyDataService = (function () {
             .set('offset', (Math.floor(Math.random() * this.offset_max) + 1).toString())
             .set('api_key', this.GIPHY_API_KEY);
         return this.http
-            .get('http://api.giphy.com/v1/gifs/search', { params: params })
+            .get('//api.giphy.com/v1/gifs/search', { params: params })
             .map(function (response) { return _this.mapDataFromApi(response); });
     };
     GiphyDataService = __decorate([
