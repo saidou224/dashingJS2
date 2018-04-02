@@ -353,6 +353,8 @@ var DashboardComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__widget_container_component__ = __webpack_require__("../../../../../src/app/dashboard/widget-container.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__widget_host_directive__ = __webpack_require__("../../../../../src/app/dashboard/widget-host.directive.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__ = __webpack_require__("../../../../../src/app/dashboard/widgets/hello-world/hello-world.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__widgets_widget_giphy_widget_giphy_component__ = __webpack_require__("../../../../../src/app/dashboard/widgets/widget-giphy/widget-giphy.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -368,15 +370,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var DashboardModule = (function () {
     function DashboardModule() {
     }
     DashboardModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_3__dashboard_routes__["a" /* DashboardRoutesModule */], __WEBPACK_IMPORTED_MODULE_4_angular_gridster2__["GridsterModule"]],
-            declarations: [__WEBPACK_IMPORTED_MODULE_2__dashboard_component__["a" /* DashboardComponent */], __WEBPACK_IMPORTED_MODULE_6__widget_container_component__["a" /* WidgetContainerComponent */], __WEBPACK_IMPORTED_MODULE_7__widget_host_directive__["a" /* WidgetHostDirective */], __WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */]],
+            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_3__dashboard_routes__["a" /* DashboardRoutesModule */], __WEBPACK_IMPORTED_MODULE_4_angular_gridster2__["GridsterModule"], __WEBPACK_IMPORTED_MODULE_10__angular_common_http__["b" /* HttpClientModule */]],
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__dashboard_component__["a" /* DashboardComponent */],
+                __WEBPACK_IMPORTED_MODULE_6__widget_container_component__["a" /* WidgetContainerComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__widget_host_directive__["a" /* WidgetHostDirective */],
+                __WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__widgets_widget_giphy_widget_giphy_component__["a" /* WidgetGiphyComponent */]
+            ],
             providers: [__WEBPACK_IMPORTED_MODULE_5__dashboard_gridster_config_service__["a" /* DashboardGridsterConfigService */]],
-            entryComponents: [__WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */]]
+            entryComponents: [__WEBPACK_IMPORTED_MODULE_8__widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */], __WEBPACK_IMPORTED_MODULE_9__widgets_widget_giphy_widget_giphy_component__["a" /* WidgetGiphyComponent */]]
         })
     ], DashboardModule);
     return DashboardModule;
@@ -464,7 +474,8 @@ var WidgetContainerComponent = (function () {
     WidgetContainerComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-widget-container',
-            template: "<ng-template [appWidgetHost]=\"data\"></ng-template>"
+            template: "<ng-template [appWidgetHost]=\"data\"></ng-template>",
+            styles: [':host{height: 100%; display: flex; align-items: center}']
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["ComponentFactoryResolver"]])
     ], WidgetContainerComponent);
@@ -558,6 +569,159 @@ var HelloWorldComponent = (function () {
 
 /***/ }),
 
+/***/ "../../../../../src/app/dashboard/widgets/widget-giphy/giphy-data.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GiphyDataService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var GiphyDataService = (function () {
+    function GiphyDataService(http) {
+        this.http = http;
+        this.GIPHY_API_KEY = 'dc6zaTOxFJmzC';
+        this.timer = __WEBPACK_IMPORTED_MODULE_2_rxjs__["Observable"].interval(600000).startWith(0); // 10 minutes + start now
+        this.offset_max = 100;
+    }
+    GiphyDataService.prototype.getImages = function (q) {
+        var _this = this;
+        this.q = q;
+        return this.timer.switchMap(function () { return _this.getGiphyImages(q); });
+    };
+    GiphyDataService.prototype.mapDataFromApi = function (response) {
+        this.offset_max = response.pagination.total_count - 100;
+        if (0 === response.data.length) {
+            this.getImages(this.q);
+        }
+        var images = [];
+        for (var _i = 0; _i < response.data.length; _i++) {
+            var image = response.data[_i].images.fixed_height;
+            // only landscape image
+            if (image.width > image.height) {
+                images.push(image);
+            }
+        }
+        return images;
+    };
+    GiphyDataService.prototype.getGiphyImages = function (q) {
+        var _this = this;
+        var params = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpParams */]()
+            .set('q', q)
+            .set('limit', '100')
+            .set('rating', 'g')
+            .set('offset', (Math.floor(Math.random() * this.offset_max) + 1).toString())
+            .set('api_key', this.GIPHY_API_KEY);
+        return this.http
+            .get('http://api.giphy.com/v1/gifs/search', { params: params })
+            .map(function (response) { return _this.mapDataFromApi(response); });
+    };
+    GiphyDataService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], GiphyDataService);
+    return GiphyDataService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/widgets/widget-giphy/widget-giphy.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ":host {\n  height: 100%; }\n  :host video {\n    height: 100%; }\n  :host small {\n    position: absolute;\n    z-index: 1;\n    bottom: 5px;\n    right: 5px; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/dashboard/widgets/widget-giphy/widget-giphy.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WidgetGiphyComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__giphy_data_service__ = __webpack_require__("../../../../../src/app/dashboard/widgets/widget-giphy/giphy-data.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var WidgetGiphyComponent = (function () {
+    function WidgetGiphyComponent(giphyDataService) {
+        this.giphyDataService = giphyDataService;
+        this.currentImageIndex = 0;
+        this.timer = null;
+    }
+    WidgetGiphyComponent.prototype.getImages = function () {
+        var _this = this;
+        this.giphyDataService.getImages(this.data.widget.params.q).subscribe(function (images) {
+            _this.images = images;
+            if (null !== _this.timer) {
+                clearInterval(_this.timer);
+            }
+            _this.setImage();
+            _this.timer = setInterval(function () { return _this.setImage(); }, 1000 * 15);
+        });
+    };
+    WidgetGiphyComponent.prototype.setImage = function () {
+        this.currentImageIndex = this.currentImageIndex + 1 > this.images.length ? 0 : this.currentImageIndex + 1;
+        this.image = this.images[this.currentImageIndex];
+    };
+    WidgetGiphyComponent.prototype.ngOnInit = function () {
+        this.getImages();
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", Object)
+    ], WidgetGiphyComponent.prototype, "data", void 0);
+    WidgetGiphyComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'app-widget-giphy',
+            template: "\n    <small>&copy;Giphy</small>\n    <video *ngIf=\"image\"\n           [src]=\"image.mp4\"\n           #videoPlayer\n           autoplay\n           loop\n           muted\n           playsinline>\n        <img [src]=\"image.url\">\n    </video>\n  ",
+            styles: [__webpack_require__("../../../../../src/app/dashboard/widgets/widget-giphy/widget-giphy.component.scss")],
+            providers: [__WEBPACK_IMPORTED_MODULE_1__giphy_data_service__["a" /* GiphyDataService */]]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__giphy_data_service__["a" /* GiphyDataService */]])
+    ], WidgetGiphyComponent);
+    return WidgetGiphyComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../src/app/page-not-found/page-not-found.component.html":
 /***/ (function(module, exports) {
 
@@ -624,6 +788,8 @@ var PageNotFoundComponent = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app_dashboard_widgets_hello_world_hello_world_component__ = __webpack_require__("../../../../../src/app/dashboard/widgets/hello-world/hello-world.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_dashboard_widgets_widget_giphy_widget_giphy_component__ = __webpack_require__("../../../../../src/app/dashboard/widgets/widget-giphy/widget-giphy.component.ts");
+
 
 var dashingjs2Config = {
     items: [
@@ -634,7 +800,11 @@ var dashingjs2Config = {
         { cols: 1, rows: 1, widget: { component: null, icon: null, class: 'bg-warning' } },
         { cols: 1, rows: 1, widget: { component: __WEBPACK_IMPORTED_MODULE_0__app_dashboard_widgets_hello_world_hello_world_component__["a" /* HelloWorldComponent */], icon: null, class: 'bg-info' } },
         { cols: 2, rows: 1, widget: { component: null, icon: null, class: 'bg-light text-dark' } },
-        { cols: 1, rows: 1, widget: { component: null, icon: 'fa fa-bitcoin', class: 'bg-dark' } },
+        {
+            cols: 1,
+            rows: 1,
+            widget: { component: __WEBPACK_IMPORTED_MODULE_1__app_dashboard_widgets_widget_giphy_widget_giphy_component__["a" /* WidgetGiphyComponent */], params: { q: 'funny goat' }, icon: null, class: 'bg-dark' }
+        },
         { cols: 1, rows: 1, widget: { component: null, icon: 'fa fa-download', class: 'bg-white text-dark' } },
         { cols: 1, rows: 1, widget: { component: null, icon: 'fi flaticon-github', class: 'bg-primary' } },
         { cols: 1, rows: 1, widget: { component: null, icon: null, class: 'bg-secondary' } },
