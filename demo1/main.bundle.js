@@ -715,7 +715,7 @@ var WidgetGiphyComponent = (function () {
     WidgetGiphyComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-widget-giphy',
-            template: "\n    <small>&copy;Giphy</small>\n    <img [src]=\"image.url\">\n  ",
+            template: "\n    <small>&copy;Giphy</small>\n    <img *ngIf=\"image\" [src]=\"image.url\">\n  ",
             styles: [__webpack_require__("../../../../../src/app/dashboard/widgets/widget-giphy/widget-giphy.component.scss")],
             providers: [__WEBPACK_IMPORTED_MODULE_1__giphy_data_service__["a" /* GiphyDataService */]]
         }),
