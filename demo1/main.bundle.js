@@ -650,7 +650,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  height: 100%; }\n  :host video {\n    height: 100%; }\n  :host small {\n    position: absolute;\n    z-index: 1;\n    bottom: 5px;\n    right: 5px; }\n", ""]);
+exports.push([module.i, ":host {\n  height: 100%; }\n  :host img {\n    height: 100%; }\n  :host small {\n    position: absolute;\n    z-index: 1;\n    bottom: 5px;\n    right: 5px; }\n", ""]);
 
 // exports
 
@@ -698,6 +698,12 @@ var WidgetGiphyComponent = (function () {
     WidgetGiphyComponent.prototype.setImage = function () {
         this.currentImageIndex = this.currentImageIndex + 1 > this.images.length ? 0 : this.currentImageIndex + 1;
         this.image = this.images[this.currentImageIndex];
+        this.preloadImage();
+    };
+    WidgetGiphyComponent.prototype.preloadImage = function () {
+        var nextImageIndex = this.currentImageIndex + 1 > this.images.length ? 0 : this.currentImageIndex + 1;
+        var image = new Image();
+        image.src = this.images[nextImageIndex].url;
     };
     WidgetGiphyComponent.prototype.ngOnInit = function () {
         this.getImages();
@@ -709,7 +715,7 @@ var WidgetGiphyComponent = (function () {
     WidgetGiphyComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'app-widget-giphy',
-            template: "\n    <small>&copy;Giphy</small>\n    <video *ngIf=\"image\"\n           [src]=\"image.mp4\"\n           #videoPlayer\n           autoplay\n           loop\n           muted\n           playsinline>\n        <img [src]=\"image.url\">\n    </video>\n  ",
+            template: "\n    <small>&copy;Giphy</small>\n    <img [src]=\"image.url\">\n  ",
             styles: [__webpack_require__("../../../../../src/app/dashboard/widgets/widget-giphy/widget-giphy.component.scss")],
             providers: [__WEBPACK_IMPORTED_MODULE_1__giphy_data_service__["a" /* GiphyDataService */]]
         }),
