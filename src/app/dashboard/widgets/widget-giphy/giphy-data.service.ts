@@ -27,7 +27,11 @@ export class GiphyDataService {
 
     const images = [];
     for (let _i = 0; _i < response.data.length; _i++) {
-      const image: GiphyImage = response.data[_i].images.fixed_height;
+      const image: GiphyImage = {
+        url: response.data[_i].images.fixed_height.url,
+        height: response.data[_i].images.fixed_height.height,
+        width: response.data[_i].images.fixed_height.width
+      };
 
       // only landscape image
       if (image.width > image.height) {

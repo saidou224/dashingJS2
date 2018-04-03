@@ -5,8 +5,8 @@ import { Dashingjs2GridsterItem } from '../../interfaces/dashingjs2-gridster-ite
   selector: 'app-hello-world',
   template: `
       <h4>Hello world!</h4>
-      c: {{data.cols}} r: {{data.rows}}
-  `
+  `,
+  styles: ['h4{font-size: 2vw}']
 })
 export class HelloWorldComponent implements OnInit {
   @Input() data: Dashingjs2GridsterItem;

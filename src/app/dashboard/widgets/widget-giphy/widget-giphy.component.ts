@@ -24,6 +24,8 @@ export class WidgetGiphyComponent implements OnInit {
   constructor(private giphyDataService: GiphyDataService) {}
 
   private getImages() {
+    console.log(this.data);
+
     this.giphyDataService.getImages(this.data.widget.params.q).subscribe(images => {
       this.images = images;
 
