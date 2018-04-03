@@ -23,11 +23,11 @@ export class WidgetGiphyComponent implements OnInit {
 
   constructor(private giphyDataService: GiphyDataService) {}
 
-  private getImages() {
-    console.log(this.data);
-
+  getImages(): void {
     this.giphyDataService.getImages(this.data.widget.params.q).subscribe(images => {
       this.images = images;
+
+      console.log('giphyDataService', images);
 
       if (null !== this.timer) {
         clearInterval(this.timer);
@@ -41,6 +41,7 @@ export class WidgetGiphyComponent implements OnInit {
   private setImage(): void {
     this.currentImageIndex = this.currentImageIndex + 1 > this.images.length ? 0 : this.currentImageIndex + 1;
     this.image = this.images[this.currentImageIndex];
+    console.log('setImage', this.image);
     this.preloadImage();
   }
 
