@@ -10,6 +10,7 @@ export class GiphyDataService {
   private timer = Observable.interval(600000).startWith(0); // 10 minutes + start now
   private offset_max = 100;
   private q: string;
+  private nbRestartIfNoData = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -21,9 +22,12 @@ export class GiphyDataService {
   private mapDataFromApi(response: any): GiphyImage[] {
     this.offset_max = response.pagination.total_count - 100;
 
-    if (0 === response.data.length) {
-      this.getImages(this.q);
+    if (0 === response.data.length && this.nbRestartIfNoData < 2) {
+      this.nbRestartIfNoData++;
+      this.getGiphyImages(this.q);
     }
+
+    this.nbRestartIfNoData = 0;
 
     const images = [];
     for (let _i = 0; _i < response.data.length; _i++) {

@@ -14,9 +14,9 @@ import { GiphyImage } from './interfaces/giphy-image';
 })
 export class WidgetGiphyComponent implements OnInit {
   public image: GiphyImage;
+  public images: GiphyImage[];
+  public currentImageIndex: number;
 
-  private images: GiphyImage[];
-  private currentImageIndex = 0;
   private timer: any = null;
 
   @Input() data: Dashingjs2GridsterItem;
@@ -25,33 +25,39 @@ export class WidgetGiphyComponent implements OnInit {
 
   getImages(): void {
     this.giphyDataService.getImages(this.data.widget.params.q).subscribe(images => {
+      /* istanbul ignore start */
       this.images = images;
-
-      console.log('giphyDataService', images);
 
       if (null !== this.timer) {
         clearInterval(this.timer);
       }
 
       this.setImage();
+
       this.timer = setInterval(() => this.setImage(), 1000 * 15);
+      /* istanbul ignore end */
     });
   }
 
   private setImage(): void {
-    this.currentImageIndex = this.currentImageIndex + 1 > this.images.length ? 0 : this.currentImageIndex + 1;
+    if (this.currentImageIndex === undefined) {
+      this.currentImageIndex = 0;
+    } else {
+      this.currentImageIndex = this.currentImageIndex + 1 > this.images.length - 1 ? 0 : this.currentImageIndex + 1;
+    }
+
     this.image = this.images[this.currentImageIndex];
-    console.log('setImage', this.image);
     this.preloadImage();
   }
 
   private preloadImage(): void {
-    const nextImageIndex = this.currentImageIndex + 1 > this.images.length ? 0 : this.currentImageIndex + 1;
+    const nextImageIndex = this.currentImageIndex + 1 > this.images.length - 1 ? 0 : this.currentImageIndex + 1;
     const image = new Image();
     image.src = this.images[nextImageIndex].url;
   }
 
   ngOnInit() {
+    this.currentImageIndex = undefined;
     this.getImages();
   }
 }

@@ -125,4 +125,19 @@ describe('GiphyDataService', () => {
       expect(images).toEqual(expectedImages, 'expected images');
     }, fail);
   });
+
+  it('should return expected images without data', () => {
+    const giphyApiFakeResponse = {
+      pagination: { total_count: 0 },
+      data: []
+    };
+
+    httpClientSpy.get.and.returnValue(asyncData(giphyApiFakeResponse));
+
+    giphyDataService.getImages('foo').subscribe(images => {
+      expect(images).toEqual([], 'expected images');
+    }, fail);
+  });
+
+  // todo test max_offset auto setter
 });

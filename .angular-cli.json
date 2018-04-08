@@ -50,6 +50,9 @@
     }
   ],
   "test": {
+    "codeCoverage": {
+      "exclude": ["src/**/**.mock.ts"]
+    },
     "karma": {
       "config": "./karma.conf.js"
     }
